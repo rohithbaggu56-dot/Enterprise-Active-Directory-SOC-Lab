@@ -564,8 +564,8 @@ Possible future enhancements for this lab include:
 
 If you'd like to discuss this project or connect professionally, feel free to reach out.
 
-- **LinkedIn:** *(Add your LinkedIn profile here)*
-- **TryHackMe:** *(Add your TryHackMe profile here)*
+- [**LinkedIn**](https://www.linkedin.com/in/rohithbaggu/)
+- [**TryHackMe**](https://tryhackme.com/p/rohithbaggu56)
 
 ---
 
