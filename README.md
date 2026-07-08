@@ -22,8 +22,6 @@ The objective was not only to build an Active Directory environment, but also to
 
 Throughout the project, I deployed Active Directory services, configured enterprise users and security groups, integrated Windows logging with Wazuh and Sysmon, simulated multiple Active Directory attacks from Kali Linux, and investigated the resulting detections through Wazuh dashboards and event analysis.
 
-Built an enterprise Active Directory lab integrated with Wazuh SIEM to simulate, detect, and investigate common Active Directory attack techniques using MITRE ATT&CK.
-
 ---
 
 # 🎯 Objectives
