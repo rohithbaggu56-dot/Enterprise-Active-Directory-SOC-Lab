@@ -1,30 +1,26 @@
-<img width="1911" height="1080" alt="ad-lab-images-51" src="https://github.com/user-attachments/assets/14992b78-21b5-4b08-b262-4c4a20d2f9bf" />
-<img width="1911" height="1080" alt="ad-lab-images-50" src="https://github.com/user-attachments/assets/5e13d0a6-a1e2-4a37-9d65-f395414d0047" />
-<img width="1911" height="1080" alt="ad-lab-images-49" src="https://github.com/user-attachments/assets/c1e7a4c1-e5a2-421d-8cc6-33d8a6183399" />
-<img width="1911" height="1080" alt="ad-lab-images-47" src="https://github.com/user-attachments/assets/5d09edb7-785b-4236-9d58-dca46fde63c1" />
-<img width="1911" height="1080" alt="ad-lab-images-46" src="https://github.com/user-attachments/assets/9c9d62fb-4070-4221-89a4-260d4a1bfa08" />
-<img width="1911" height="1080" alt="ad-lab-images-45" src="https://github.com/user-attachments/assets/1f3a974e-7d45-46d0-a3d7-c9974f3f1bc2" />
-<img width="1911" height="1080" alt="ad-lab-images-44" src="https://github.com/user-attachments/assets/f2362df2-548a-4c41-905d-f9ebf42f2bad" />
-<img width="1911" height="1080" alt="ad-lab-images-43" src="https://github.com/user-attachments/assets/fa9ffcdc-1bd0-46d9-b792-68b6a73cb9a8" />
-<img width="1908" height="1060" alt="ad-lab-images-42" src="https://github.com/user-attachments/assets/caa3464d-4095-4edb-a21f-62c2805e062f" />
-<img width="1908" height="1060" alt="ad-lab-images-41" src="https://github.com/user-attachments/assets/0b339487-369c-4b0b-969e-ea914531ce19" />
-<img width="1914" height="1069" alt="ad-lab-images-39" src="https://github.com/user-attachments/assets/ae76a8eb-a811-4f37-b67e-f435c1d9bef1" />
-<img width="1920" height="1077" alt="ad-lab-images-38" src="https://github.com/user-attachments/assets/775cceec-3cb8-4a44-96c7-74b17b175a7a" />
-<img width="1920" height="1077" alt="ad-lab-images-37" src="https://github.com/user-attachments/assets/28d1b8b1-f79c-41d7-8f11-fc73043516ff" />
-<img width="1920" height="1066" alt="ad-lab-images-35" src="https://github.com/user-attachments/assets/ba8410f8-accd-4330-8d3d-45ea3ddd8879" />
-<img width="1914" height="1070" alt="ad-lab-images-32" src="https://github.com/user-attachments/assets/f9384a9b-c1ed-4746-9965-39f85a28abd8" />
-<img width="1891" height="1071" alt="ad-lab-images-28" src="https://github.com/user-attachments/assets/e735b076-0385-422a-b1b6-8d3b9dc6120c" />
-<img width="1891" height="1071" alt="ad-lab-images-27" src="https://github.com/user-attachments/assets/1a529019-1c80-4abc-904f-7608becfa784" />
-<img width="1891" height="1080" alt="ad-lab-images-26" src="https://github.com/user-attachments/assets/60af1a80-71b7-4e28-9f81-a3aa70a30c6a" />
-<img width="1891" height="1080" alt="ad-lab-images-25" src="https://github.com/user-attachments/assets/58a6973c-f07b-4561-8ed3-44fd926314c2" />
-<img width="1891" height="1080" alt="ad-lab-images-24" src="https://github.com/user-attachments/assets/a3c75c7c-96c7-449f-9268-000756ec0089" />
-<img width="1891" height="1080" alt="ad-lab-images-22" src="https://github.com/user-attachments/assets/467de275-8caa-4593-aa5d-93bc4c8b007c" />
-<img width="1891" height="1080" alt="ad-lab-images-21" src="https://github.com/user-attachments/assets/4a92b2b2-c7a9-4ccd-877c-6bfaa8314ccd" />
-<img width="1903" height="1080" alt="ad-lab-images-12" src="https://github.com/user-attachments/assets/b67bb15c-7e5c-44e7-a0d2-5654013ca024" />
-<img width="1860" height="1080" alt="ad-lab-images-11" src="https://github.com/user-attachments/assets/7b436748-0ee1-4e2c-8704-d9c988163305" />
-<img width="1860" height="1080" alt="ad-lab-images-9" src="https://github.com/user-attachments/assets/3539a0fe-da4f-40a5-9a83-1135f316636f" />
-<img width="1860" height="1080" alt="ad-lab-images-8" src="https://github.com/user-attachments/assets/4b037029-0d07-4e86-83f8-9c629382a5c4" />
-<img width="1863" height="1080" alt="ad-lab-images-7" src="https://github.com/user-attachments/assets/e840185b-46ce-46cf-acec-5435a4f80e03" />
-<img width="1920" height="1080" alt="ad-lab-images-6" src="https://github.com/user-attachments/assets/8b167176-fbfb-4784-bf5d-fa67dc518012" />
-<img width="1911" height="1080" alt="ad-lab-images-3" src="https://github.com/user-attachments/assets/a32f6994-ce9e-4600-9d62-e018e043e367" />
-<img width="1911" height="1080" alt="ad-lab-images-2" src="https://github.com/user-attachments/assets/985661dd-f056-4d14-ad41-ac0bf7cda167" />
+# Enterprise Active Directory SOC Lab
+
+A complete enterprise-style Active Directory home lab built to simulate real-world Windows domain environments, execute common Active Directory attack techniques, and validate detections using Wazuh SIEM.
+
+The project focuses on Blue Team operations by combining Active Directory administration, attack simulation, log collection, threat hunting, and MITRE ATT&CK mapping within a single enterprise network.
+
+---
+
+## Project Objectives
+
+- Build an enterprise Active Directory environment
+- Configure Windows Server 2022 as the Domain Controller
+- Join Windows 10 to the corporate domain
+- Create organizational units (OUs), users, groups, and service accounts
+- Simulate common Active Directory attack techniques
+- Collect Windows and Sysmon logs using Wazuh agents
+- Detect attacker activity using Wazuh rules
+- Investigate alerts through Threat Hunting dashboards
+- Validate detections using MITRE ATT&CK mappings
+
+---
+
+## Lab Architecture
+
+<img width="1536" height="1024" alt="ACTIVE DIRECTORY + WAZUH SOC LAB ARCHITECTURE" src="https://github.com/user-attachments/assets/9bc400a7-666c-4023-98a2-b0107d8e51c0" />
+
