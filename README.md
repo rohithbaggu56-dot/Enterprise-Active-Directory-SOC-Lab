@@ -12,107 +12,55 @@
 
 </p>
 
----
+> ### 📌 Project Highlights
+>
+> - Built a complete enterprise Active Directory lab from scratch.
+> - Integrated Windows telemetry with Wazuh SIEM and Sysmon.
+> - Simulated Password Spraying, SMB Enumeration, Kerberoasting, and AS-REP Roasting.
+> - Validated detections using Threat Hunting and MITRE ATT&CK mapping.
+> - Demonstrated end-to-end SOC investigation workflow in a controlled lab.
 
-## 📌 Project Overview
 
-This project demonstrates the design, deployment, monitoring, and security validation of a small enterprise Active Directory environment. The lab simulates a real-world Windows domain consisting of a Domain Controller, Windows client, Linux attacker machine, and a centralized Wazuh SIEM platform used for security monitoring and threat hunting.
+# 📌 Project Overview
 
-The objective was not only to build an Active Directory environment, but also to understand how common attack techniques generate telemetry, how those activities are detected by a SIEM, and how defenders can investigate them using MITRE ATT&CK mapping and threat hunting workflows.
+This project demonstrates the deployment, monitoring, and security validation of an enterprise-style Active Directory environment. A Windows Server 2022 Domain Controller, Windows 10 workstation, Kali Linux attacker, and Ubuntu-based Wazuh SIEM were built inside VirtualBox to simulate how a Security Operations Center (SOC) detects and investigates Active Directory attacks. After deploying the environment, multiple attack techniques were executed from Kali Linux and validated through Wazuh dashboards, Threat Hunting, and MITRE ATT&CK mapping.
 
-Throughout the project, I deployed Active Directory services, configured enterprise users and security groups, integrated Windows logging with Wazuh and Sysmon, simulated multiple Active Directory attacks from Kali Linux, and investigated the resulting detections through Wazuh dashboards and event analysis.
 
----
+# 🎯 Project Objectives
 
-# 🎯 Objectives
-
-- Build a functional Active Directory domain from scratch
-- Configure enterprise users, groups, and service accounts
-- Join Windows endpoints to the domain
-- Integrate Windows event logs with Wazuh SIEM
-- Deploy Sysmon for enhanced endpoint visibility
-- Simulate common Active Directory attack techniques
-- Detect attack activity using MITRE ATT&CK mapping
-- Perform threat hunting using centralized telemetry
-- Gain hands-on SOC analyst experience in monitoring and investigating enterprise environments
+- Build an enterprise Active Directory environment from scratch.
+- Configure Organizational Units (OUs), users, groups, and service accounts.
+- Join Windows endpoints to the Active Directory domain.
+- Centralize Windows and Sysmon logs using Wazuh.
+- Simulate common Active Directory attack techniques.
+- Detect attacker activity through MITRE ATT&CK mapping.
+- Perform threat hunting using collected telemetry.
+- Gain practical SOC Analyst experience in detection and investigation.
 
 ---
 
 # 🏗️ Lab Architecture
 
-The lab consists of a Windows Server 2022 Domain Controller, a domain-joined Windows 10 workstation, a Kali Linux attacker machine, and an Ubuntu server running Wazuh for centralized monitoring.
+The environment consists of a Domain Controller, a domain-joined Windows workstation, a Kali Linux attack machine, and a Wazuh SIEM server for centralized monitoring.
 
 <p align="center">
-
-<img src="images/architecture/enterprise-lab-architecture.png" width="900">
-
+<img width="1536" height="1024" alt="enterprise-lab-architecture" src="https://github.com/user-attachments/assets/f0fc3e01-8161-47dd-80ba-4d5b9c5715a0" />
 </p>
 
----
-
-# 🖥️ Lab Environment
-
-| Component | Purpose |
-|-----------|----------|
-| Windows Server 2022 | Active Directory Domain Controller |
-| Windows 10 | Domain-joined enterprise workstation |
-| Ubuntu Server | Wazuh SIEM Manager |
-| Kali Linux | Attack simulation machine |
-| Sysmon | Endpoint telemetry collection |
-| Wazuh Agent | Log forwarding and monitoring |
-| PowerShell | Active Directory automation |
-| VirtualBox | Virtualization platform |
-
----
 
 # 🛠️ Technologies Used
 
 | Category | Technologies |
 |-----------|--------------|
 | Operating Systems | Windows Server 2022, Windows 10, Ubuntu Server, Kali Linux |
-| Identity | Active Directory Domain Services |
+| Identity Management | Active Directory Domain Services (AD DS) |
 | SIEM | Wazuh |
 | Endpoint Monitoring | Sysmon |
-| Logging | Windows Event Logs |
+| Log Collection | Windows Event Logs |
 | Scripting | PowerShell |
-| Offensive Tools | NetExec, Impacket |
+| Attack Simulation | NetExec, Impacket |
 | Detection Framework | MITRE ATT&CK |
-
----
-
-# 📁 Repository Structure
-
-```text
-Enterprise-Active-Directory-SOC-Lab
-│
-├── README.md
-│
-├── images
-│   ├── architecture
-│   ├── ad-installation
-│   ├── active-directory
-│   ├── attacks
-│   └── wazuh
-│
-└── scripts
-```
-
----
-
-# 📖 Project Workflow
-
-This lab follows the same lifecycle a SOC analyst would encounter in an enterprise environment:
-
-1. Build Active Directory
-2. Configure enterprise users and groups
-3. Deploy Windows endpoints
-4. Configure centralized logging
-5. Integrate Wazuh and Sysmon
-6. Simulate Active Directory attacks
-7. Detect malicious activity
-8. Investigate alerts using Wazuh
-9. Map detections to MITRE ATT&CK
-10. Perform threat hunting
+| Virtualization | VirtualBox |
 
 ---
 
@@ -120,443 +68,258 @@ This lab follows the same lifecycle a SOC analyst would encounter in an enterpri
 
 The first phase of the project focused on building a functional Active Directory environment capable of supporting enterprise authentication, centralized identity management, and attack simulation.
 
-The deployment included installing Active Directory Domain Services (AD DS), promoting the Windows Server to a Domain Controller, creating a new forest (`corp.local`), and joining a Windows 10 workstation to the domain.
+The deployment included:
 
----
-
-## Windows 10 Joined to the Domain
-
-The Windows 10 workstation was successfully joined to the `corp.local` domain, allowing centralized authentication and Group Policy management.
+- Installing Active Directory Domain Services (AD DS)
+- Promoting Windows Server 2022 to a Domain Controller
+- Creating the **corp.local** domain
+- Joining a Windows 10 workstation to the domain
 
 <p align="center">
-<img src="images/ad-installation/windows10-domain-join.png" width="900">
+<img width="466" height="480" alt="windows10-domain-join" src="https://github.com/user-attachments/assets/566e8341-bd4b-490b-ad24-84ceb71d663c" />
+</p>
+
+
+# 👥 User Account Configuration
+
+To better simulate a real enterprise environment, Organizational Units (OUs), departmental users, security groups, administrative accounts, and service accounts were created instead of relying on the default Active Directory objects.
+
+The environment includes users across multiple departments including **IT, HR, Finance, and Sales**, along with dedicated administrative and service accounts used later during attack simulations.
+
+<p align="center">
+<img width="877" height="960" alt="user-account-properties" src="https://github.com/user-attachments/assets/a390881e-4a30-4b4e-83c8-96c91a6035d6" />
+</p>
+
+
+# ⚡ Active Directory Automation
+
+PowerShell automation was used to provision enterprise users, administrative accounts, service accounts, and Kerberos test accounts.
+
+This also included configuring:
+
+- Service Principal Names (SPNs) for Kerberoasting simulations
+- An AS-REP roastable user account
+- Enterprise account provisioning through PowerShell automation
+
+<p align="center">
+
+<img width="1860" height="1080" alt="powershell-ad-automation" src="https://github.com/user-attachments/assets/11b3e31d-ca68-4d05-8bb7-b1ad568ac1fc" />
+
+<br><br>
+
+<img width="1896" height="1069" alt="configure-spn-service-account" src="https://github.com/user-attachments/assets/45a6f3fe-d744-44b8-927e-023ad1da05cb" />
+
+<br><br>
+
+<img width="1896" height="1069" alt="configure-asreproast-user" src="https://github.com/user-attachments/assets/58317ebc-3a3b-46df-ae00-41b86aaab2e2" />
+
 </p>
 
 ---
-
-# 👥 Enterprise Configuration
-
-To better simulate a real-world enterprise, multiple Organizational Units (OUs), users, security groups, and service accounts were created instead of relying on the default Active Directory objects.
-
-This structure makes attack simulation and detection much more realistic while demonstrating common Active Directory administration tasks performed by system administrators.
-
----
-
-## Security Groups
-
-Role-based security groups were created to represent different departments and administrative teams within the organization.
-
-Examples include:
-
-- Finance_Users
-- HR_Users
-- IT_Users
-- IT_Admins
-- Sales_Users
-- Server_Admins
-- Workstation_Admins
-
-<p align="center">
-<img src="images/active-directory/security-groups.png" width="900">
-</p>
-
----
-
-## User Account Configuration
-
-User accounts were configured with appropriate logon names and organizational placement to simulate enterprise users within the Active Directory environment.
-
-<p align="center">
-<img src="images/active-directory/user-account-properties.png" width="900">
-</p>
-
----
-
-## PowerShell Automation
-
-PowerShell automation was used to rapidly provision users, groups, and service accounts, reducing manual configuration and reflecting how administrators manage large enterprise environments.
-
-<p align="center">
-<img src="images/active-directory/powershell-ad-automation.png" width="900">
-</p>
-
----
-
-## Service Account Configuration
-
-A dedicated SQL service account was created and assigned a Service Principal Name (SPN). This intentionally vulnerable configuration was used later to demonstrate and detect Kerberoasting attacks.
-
-<p align="center">
-<img src="images/active-directory/configure-spn-service-account.png" width="900">
-</p>
-
----
-
-## AS-REP Roastable Account Configuration
-
-A separate user account was configured with Kerberos pre-authentication disabled. This allowed the environment to simulate AS-REP Roasting attacks and validate corresponding detections within Wazuh.
-
-<p align="center">
-<img src="images/active-directory/configure-asreproast-user.png" width="900">
-</p>
-
----
-
-# ✅ Active Directory Deployment Summary
-
-At the end of this phase, the lab contained:
-
-| Component | Status |
-|-----------|--------|
-| Active Directory Domain Services | ✅ Deployed |
-| Domain Controller | ✅ Configured |
-| Windows 10 Domain Join | ✅ Completed |
-| Organizational Units | ✅ Created |
-| Enterprise Users | ✅ Created |
-| Security Groups | ✅ Configured |
-| Service Accounts | ✅ Configured |
-| PowerShell Automation | ✅ Implemented |
-
-This provided a realistic enterprise environment that served as the foundation for attack simulation, security monitoring, and threat hunting during the later stages of the project.
-
----
-
 # 🛡️ Wazuh Integration
 
-To provide centralized visibility into Windows activity, the Domain Controller was integrated with Wazuh. The Wazuh agent was configured to collect Windows Security, System, Application, and Sysmon logs, enabling detailed monitoring of authentication events, process creation, account management, and Active Directory activity.
-
-This integration transformed the lab from a traditional Active Directory deployment into a Security Operations Center (SOC) environment capable of detecting and investigating malicious behavior.
-
----
-
-## Wazuh Agent Configuration
-
-The Wazuh agent was configured on the Domain Controller to monitor multiple Windows log sources, providing comprehensive telemetry for threat detection and investigation.
+The Windows 10 workstation and Windows Server 2022 Domain Controller were onboarded to Wazuh for centralized log collection and endpoint monitoring. Security, System, Application, and Sysmon events were continuously collected, enabling visibility into authentication activity, process execution, and Active Directory operations throughout the lab.
 
 <p align="center">
-<img src="images/wazuh/wazuh-agent-log-configuration.png" width="900">
+<img width="1901" height="1080" alt="wazuh-agents" src="https://github.com/user-attachments/assets/b5de83f6-c587-4814-9e1b-8424b2340bf5" />
 </p>
+
+>NOTE: Both Windows endpoints successfully connected to Wazuh and continuously forwarding telemetry for monitoring and threat detection.
 
 ---
 
 # ⚔️ Active Directory Attack Simulation
 
-After completing the Active Directory deployment, multiple attack techniques were executed from a Kali Linux machine to validate detection capabilities and generate realistic security events.
+After validating the environment, multiple attack techniques were executed from Kali Linux to simulate common Active Directory attacks. Each activity generated endpoint telemetry that was collected by Wazuh for investigation and mapped to the MITRE ATT&CK framework.
 
-These attacks were performed in an isolated lab environment for educational and defensive purposes.
+The simulations included:
 
----
-
-## Simulated Attack Techniques
-
-| Attack Technique | Purpose |
-|------------------|---------|
-| SMB User Enumeration | Enumerate domain users through SMB authentication |
-| SMB Share Enumeration | Discover accessible network shares |
-| Kerberoasting | Request Kerberos service tickets for offline password cracking |
-| AS-REP Roasting | Extract AS-REP hashes from vulnerable user accounts |
-| Account Enumeration | Identify users and service accounts within the domain |
+- Password Spraying
+- SMB Enumeration
+- Kerberoasting
+- AS-REP Roasting
+- PowerShell-based Active Directory Enumeration
 
 ---
+## SMB Enumeration
 
-## SMB User Enumeration
-
-NetExec was used to authenticate against the Domain Controller and enumerate Active Directory user accounts.
+NetExec was used to authenticate against the Domain Controller and enumerate Active Directory users and accessible SMB shares.
 
 <p align="center">
-<img src="images/attacks/netexec-user-enumeration.png" width="900">
+
+<img width="1915" height="1048" alt="netexec-user-enumeration" src="https://github.com/user-attachments/assets/17c6b0ee-a91f-4ea7-8898-928dac665e71" />
+
+<br><br>
+
+<img width="1839" height="1048" alt="netexec-smb-share-enumeration" src="https://github.com/user-attachments/assets/ff9b5309-5fa6-408f-a403-b08baa1a96c9" />
+
 </p>
 
 ---
 
-## SMB Share Enumeration
+## Kerberoasting
 
-Accessible SMB shares, including administrative and domain shares such as `NETLOGON` and `SYSVOL`, were successfully enumerated.
+A Service Principal Name (SPN) account was configured and targeted using Impacket to request Kerberos service tickets, simulating a Kerberoasting attack.
 
 <p align="center">
-<img src="images/attacks/netexec-smb-share-enumeration.png" width="900">
+<img width="1869" height="1038" alt="kerberoasting-service-ticket-request" src="https://github.com/user-attachments/assets/b2eaafb7-18fb-459d-bca9-93d27717ff50" />
 </p>
 
 ---
 
-## Kerberoasting Attack
+## AS-REP Roasting
 
-A service ticket was requested for the configured SQL service account using Impacket's `GetUserSPNs`. This simulated the Kerberoasting technique commonly used by attackers to obtain Kerberos service tickets for offline password cracking.
+A user account with Kerberos pre-authentication disabled was configured and targeted using Impacket to simulate an AS-REP Roasting attack.
 
 <p align="center">
-<img src="images/attacks/kerberoasting-service-ticket-request.png" width="900">
+<img width="1869" height="1038" alt="asreproast-ticket-extraction" src="https://github.com/user-attachments/assets/442ea0a7-18b4-40c0-94ee-c57a6c1db03d" />
 </p>
 
 ---
 
-## AS-REP Roasting Attack
+# 📊 Detection & Investigation
 
-A user account configured without Kerberos pre-authentication was targeted using Impacket's `GetNPUsers`, demonstrating the AS-REP Roasting technique and generating authentication events for later analysis.
+Following the attack simulations, Wazuh successfully collected and correlated Windows Security and Sysmon events generated throughout the lab. Authentication activity, process creation, PowerShell execution, and Active Directory events were centralized for investigation through Wazuh dashboards and MITRE ATT&CK mapping.
+
+
+## 🧠 MITRE ATT&CK Dashboard
+
+The MITRE ATT&CK dashboard provided a high-level view of the techniques observed during the attack simulations, helping correlate Windows events with attacker behavior rather than isolated log entries.
 
 <p align="center">
-<img src="images/attacks/asreproast-ticket-extraction.png" width="900">
+<img width="1920" height="1080" alt="mitre-attack-weekly-dashboard" src="https://github.com/user-attachments/assets/e390499f-aa2a-485b-8f2a-02dc86b71e3b" />
+</p>
+
+
+## 🔍 Threat Hunting Dashboard
+
+The Threat Hunting dashboard provided centralized visibility into authentication activity, endpoint events, and alerts generated across the monitored environment.
+
+<p align="center">
+<img width="1905" height="1080" alt="threat-hunting-weekly-dashboard" src="https://github.com/user-attachments/assets/09933156-ff6e-419c-b5d6-81005ae9cadb" />
 </p>
 
 ---
 
-# 🎯 Attack Validation Summary
+# 🕵️ Investigation Examples
 
-The attack simulations successfully generated realistic security events that were collected by Wazuh and later analyzed through dashboards, threat hunting, and MITRE ATT&CK mapping.
+Daily investigations were performed using both the Threat Hunting and MITRE ATT&CK views to validate detections generated during the attack simulations.
 
-| Technique | Result |
-|-----------|--------|
-| SMB User Enumeration | ✅ Successful |
-| SMB Share Enumeration | ✅ Successful |
-| Kerberoasting | ✅ Successful |
-| AS-REP Roasting | ✅ Successful |
-| Windows Authentication Events | ✅ Collected |
-| Wazuh Detection | ✅ Verified |
-
----
-
-# 📊 Detection & Monitoring
-
-Following the attack simulations, Wazuh collected and correlated Windows Security and Sysmon events generated by the Domain Controller. The platform provided centralized visibility into authentication activity, account management, process execution, and Active Directory events.
-
-Using Wazuh dashboards and event analysis, it was possible to validate that the simulated attacks generated meaningful telemetry and map the observed behaviors to the MITRE ATT&CK framework.
-
----
-
-# 🧠 MITRE ATT&CK Dashboard
-
-The MITRE ATT&CK dashboard provides an overview of the adversary techniques observed within the environment. Wazuh automatically mapped relevant events to ATT&CK techniques, helping identify attacker behavior rather than isolated log entries.
+### MITRE ATT&CK Investigation
 
 <p align="center">
-<img src="images/wazuh/mitre-attack-weekly-dashboard.png" width="900">
+  
+<img width="1891" height="1080" alt="mitre-attack-events-day-01" src="https://github.com/user-attachments/assets/4e1083bb-ed6b-4c4a-826b-92a9ff6968e8" />
+
+<br><br>
+
+<img width="1911" height="1080" alt="mitre-attack-events-day-02" src="https://github.com/user-attachments/assets/633794d8-7aa4-4f73-b2a8-ee64559e0372" />
+
 </p>
 
-Key observations:
-
-- Centralized visibility into detected techniques
-- MITRE ATT&CK mapping for security events
-- Technique distribution across the monitored environment
-- Improved analyst context during investigations
-
----
-
-# 🔍 Threat Hunting Dashboard
-
-The Threat Hunting dashboard provides analysts with a high-level view of endpoint activity, authentication events, alerts, and monitored systems.
-
-This dashboard serves as the starting point for investigating suspicious behavior before pivoting into detailed event analysis.
+### Threat Hunting Investigation
 
 <p align="center">
-<img src="images/wazuh/threat-hunting-weekly-dashboard.png" width="900">
+  
+<img width="1891" height="1071" alt="threat-hunting-events-day-01" src="https://github.com/user-attachments/assets/b9c7b6e9-0944-4bf0-8476-9ff8e0b4c7c5" />
+
+<br><br>
+
+<img width="1911" height="1080" alt="threat-hunting-events-day-02" src="https://github.com/user-attachments/assets/4ac6ef73-3c6c-48a9-85d9-2a850fcb9fdf" />
+
 </p>
-
-Key observations:
-
-- Authentication activity
-- Endpoint visibility
-- Alert trends
-- Event distribution
-- Monitored hosts
-
----
-
-# 🚨 MITRE ATT&CK Event Investigation
-
-Individual security events generated during the attack simulations were reviewed through the MITRE ATT&CK event view.
-
-This allowed each detection to be correlated with the associated ATT&CK technique, making it easier to understand attacker behavior and validate detection coverage.
-
-<p align="center">
-<img width="1911" height="1080" alt="mitre-attack-events-day-02" src="https://github.com/user-attachments/assets/bac5d9f5-5a5e-4546-bb79-dd0f922f0cc9" />
-</p>
-
-Examples of observed activity included:
-
-- Account discovery
-- PowerShell execution
-- Windows authentication events
-- Active Directory enumeration
-- Kerberos-related activity
-
----
-
-# 🕵️ Threat Hunting Investigation
-
-Detailed event analysis was performed using Wazuh's Threat Hunting interface, allowing security events to be filtered, reviewed, and correlated over time.
-
-<p align="center">
-<img width="1911" height="1080" alt="threat-hunting-events-day-02" src="https://github.com/user-attachments/assets/0294602b-c0dd-43ed-8d2c-b1b703f0b61a" />
-</p>
-
-The investigation process focused on:
-
-- Authentication events
-- User activity
-- Process execution
-- Security alerts
-- Windows event correlation
-
----
-
-# 🔐 Authentication Monitoring
-
-Authentication-related events generated throughout the attack simulations were reviewed to validate successful log collection and identify suspicious authentication patterns.
-
-<p align="center">
-<img width="1914" height="1069" alt="threat-hunting-events-day-03" src="https://github.com/user-attachments/assets/0a2b2477-a93c-4558-bc76-83e2050083bd" />
-</p>
-
-Observed authentication activity included:
-
-- Successful logons
-- Failed logons
-- NTLM authentication
-- Anonymous logons
-- Windows security events
-
----
-
-# 🧩 MITRE ATT&CK Techniques Observed
-
-| MITRE Technique | ID |
-|-----------------|----|
-| Account Discovery | T1087 |
-| Group Discovery | T1069 |
-| PowerShell | T1059.001 |
-| Remote System Discovery | T1018 |
-| Valid Accounts | T1078 |
-| Kerberoasting | T1558.003 |
-| AS-REP Roasting | T1558.004 |
-| Network Share Discovery | T1135 |
 
 ---
 
 # 📈 Detection Highlights
+Throughout the lab, Wazuh successfully detected and correlated security events generated by the simulated Active Directory attacks.
 
-Throughout the project, Wazuh successfully collected telemetry generated during each phase of the attack lifecycle.
+Key observations included:
 
-Detection capabilities demonstrated in this lab included:
-
-- Windows Security Event monitoring
-- Sysmon event collection
-- Active Directory account monitoring
-- Authentication monitoring
+- Windows authentication monitoring
+- Kerberos-related activity
+- PowerShell execution
+- Account discovery
+- Process creation
+- Active Directory event collection
 - MITRE ATT&CK mapping
-- Threat hunting workflows
-- Endpoint telemetry collection
-- Security event correlation
-- Centralized log analysis
+- Centralized threat hunting using Wazuh
 
-These detections confirmed that the simulated attack activity was successfully captured and made available for investigation through a centralized SOC workflow.
+### MITRE ATT&CK Techniques Observed
+
+- **T1087** – Account Discovery
+- **T1135** – Network Share Discovery
+- **T1018** – Remote System Discovery
+- **T1059.001** – PowerShell
+- **T1078** – Valid Accounts
+- **T1558.003** – Kerberoasting
+- **T1558.004** – AS-REP Roasting
 
 ---
 
 # 💡 Skills Demonstrated
 
-This project provided hands-on experience across multiple Blue Team and Active Directory administration tasks commonly performed by SOC analysts and security administrators.
+This project provided hands-on experience with technologies and workflows commonly used by SOC Analysts and Blue Team defenders.
 
 ### Active Directory
 
 - Active Directory Domain Services (AD DS)
 - Domain Controller Deployment
-- Organizational Unit (OU) Management
-- User Administration
-- Security Group Management
-- Service Account Configuration
-- Windows Domain Administration
+- Organizational Unit (OU) Administration
+- User & Service Account Management
 - PowerShell Automation
 
 ### Security Operations
 
 - Wazuh SIEM Administration
 - Sysmon Configuration
-- Windows Event Log Collection
+- Windows Event Log Analysis
 - Threat Hunting
 - Alert Investigation
 - Security Event Correlation
-- Endpoint Monitoring
-- Log Analysis
 
 ### Attack Simulation
 
 - SMB Enumeration
-- User Enumeration
-- Share Enumeration
+- Password Spraying
 - Kerberoasting
 - AS-REP Roasting
 - Active Directory Reconnaissance
-- Authentication Analysis
 
 ### Security Frameworks
 
 - MITRE ATT&CK
 - Windows Security Logging
-- Security Monitoring
-- Detection Engineering Fundamentals
+- Endpoint Monitoring
 
 ---
 
 # 📚 Key Takeaways
 
-Building this lab provided practical experience beyond simply deploying Active Directory.
+Building this lab provided practical experience beyond simply deploying Active Directory. It strengthened my understanding of how enterprise identity infrastructure, attack simulation, and security monitoring work together in a modern Security Operations Center (SOC).
 
-Some of the most valuable lessons included:
+Some of the key lessons from this project include:
 
-- Understanding how enterprise identity infrastructure is built and managed.
-- Learning how attackers enumerate and abuse Active Directory environments.
-- Configuring centralized log collection using Wazuh and Sysmon.
-- Mapping attack techniques to the MITRE ATT&CK framework.
-- Investigating authentication events and security telemetry from a defender's perspective.
-- Gaining experience with both Windows administration and Security Operations workflows.
-
-This project strengthened my understanding of how Active Directory administration, endpoint monitoring, and threat detection work together in a modern SOC environment.
+- Deploying and managing an enterprise Active Directory environment.
+- Automating administrative tasks using PowerShell.
+- Simulating common Active Directory attack techniques.
+- Investigating authentication and endpoint telemetry using Wazuh.
+- Understanding how Windows security events map to MITRE ATT&CK techniques.
+- Developing practical investigation skills from a defender's perspective.
 
 ---
 
 # 🚀 Future Improvements
 
-Possible future enhancements for this lab include:
+Potential enhancements for this lab include:
 
-- Deploy additional Windows client systems
-- Configure Group Policy Objects (GPOs)
-- Simulate lateral movement scenarios
-- Integrate Microsoft Sentinel for multi-SIEM monitoring
-- Perform BloodHound Active Directory analysis
-- Simulate ransomware behavior for detection testing
-- Expand PowerShell automation for user provisioning
-- Add Sigma rules for custom detections
-- Develop Wazuh detection rules for additional Active Directory attack techniques
-
----
-
-# 📂 Project Summary
-
-| Category | Details |
-|----------|----------|
-| Environment | Windows Server 2022, Windows 10, Ubuntu Server, Kali Linux |
-| Identity Platform | Active Directory Domain Services |
-| SIEM | Wazuh |
-| Endpoint Monitoring | Sysmon |
-| Automation | PowerShell |
-| Attack Tools | NetExec, Impacket |
-| Detection Framework | MITRE ATT&CK |
-| Virtualization | VirtualBox |
-
----
-
-# 🎯 Skills Highlighted for SOC Roles
-
-- Active Directory Administration
-- Windows Server Administration
-- Security Monitoring
-- Threat Hunting
-- SIEM Operations
-- Endpoint Visibility
-- Windows Event Analysis
-- MITRE ATT&CK Mapping
-- Authentication Analysis
-- Log Correlation
-- Incident Investigation
-- Blue Team Fundamentals
+- Deploy additional Windows client systems.
+- Configure Group Policy Objects (GPOs).
+- Simulate lateral movement scenarios.
+- Integrate Microsoft Sentinel for multi-SIEM monitoring.
+- Deploy BloodHound for Active Directory analysis.
+- Develop custom Wazuh detection rules.
+- Add Sigma rules for additional detection coverage.
 
 ---
 
@@ -569,8 +332,6 @@ If you'd like to discuss this project or connect professionally, feel free to re
 
 ---
 
-## ⭐ If you found this project helpful
+## ⭐ Support
 
-If you found this repository useful or interesting, consider giving it a ⭐.
-
-Feedback and suggestions are always welcome.
+If you found this project useful or interesting, consider giving it a ⭐. Feedback and suggestions are always welcome.
